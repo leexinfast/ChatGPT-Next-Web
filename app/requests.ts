@@ -50,7 +50,7 @@ function getHeaders() {
 
 export function requestOpenaiClient(path: string) {
   return (body: any, method = "POST") =>
-    fetch("/api/openai?_vercel_no_cache=1", {
+    fetch("/api/openai", {
       method,
       headers: {
         "Content-Type": "application/json",
@@ -171,11 +171,11 @@ export async function requestChatStream(
         const resTimeoutId = setTimeout(() => finish(), TIME_OUT_MS);
         const content = await reader?.read();
         clearTimeout(resTimeoutId);
-      
+
         if (!content || !content.value) {
           break;
         }
-      
+
         const text = decoder.decode(content.value, { stream: true });
         responseText += text;
 
