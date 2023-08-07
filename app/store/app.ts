@@ -404,7 +404,9 @@ export const useChatStore = create<ChatStore>()(
         console.log("[User Input] ", sendMessages);
         const lastContentMes = sendMessages[sendMessages.length - 1].content;
 
-        fetch(`http://165.154.183.35:5000/qa_service?content=${lastContentMes}`)
+        fetch(
+          `https://copilot.d.qncentury.com/qa_service?content=${lastContentMes}`,
+        )
           .then((res) => res.json())
           .then((res) => {
             botMessage.streaming = false;
